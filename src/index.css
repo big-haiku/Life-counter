@@ -1,0 +1,280 @@
+body {
+  background: rgb(36, 36, 36);
+}
+.life-grid {
+  height: 100vh;
+  border: 1px solid white;
+}
+
+/* ------------------------------------------- */
+
+/* Life Counter */
+.img-background {
+  background-position: center;
+  background-size: cover;
+  /* filter: brightness(0.7); */
+}
+.background-1 {
+  background-image: url(assets/frog_tongue.jpg);
+}
+.background-2 {
+  background-image: url(assets/the_cheese_stands_alone.jpg);
+}
+.background-3 {
+  background-image: url(assets/shai_hulud.jpg);
+}
+.background-4 {
+  background-image: url(assets/an_actual_nice_background.jpg);
+}
+.background-5 {
+  background-image: url(assets/orzhov.jpg);
+}
+.background-6 {
+  background-image: url(assets/IT_SHOULD_HAVE_BEEN_ME.jpg);
+}
+.background-7 {
+  background-image: url(assets/blue_moment.jpg);
+}
+.background-8 {
+  background-image: url(assets/mirko.png);
+}
+.wallpaper-icon {
+  font-size: clamp(16px, 3vw, 45px);
+}
+.background-selector-button {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.background-popup {
+  background-color: rgba(36, 36, 36, 0.677);
+  border: 1px solid black;
+  padding: 5px;
+  height: 100%;
+  width: 100%;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, auto);
+  overflow: scroll;
+  z-index: 10; /* Ensure popup appears above other elements */
+}
+
+.background-option {
+  display: inline-block;
+  margin: 5px;
+  padding: 10px;
+  cursor: pointer;
+  min-width: 80px;
+}
+
+
+  .player-box p {
+    transform: translate(-50%, -50%);
+  }
+  .life-button {
+    width: 50%;
+    height: 100%;
+    opacity: 0%;
+  }
+
+/* ------------------------------------------- */
+
+/* Layout Styles */
+
+.layout-2 {
+  grid-template-rows: 1fr auto 1fr;
+}
+  .layout-2 > :last-child {
+    grid-row: 2;
+  }
+
+.layout-3 {
+  grid-template-rows: 1fr auto 1fr;
+  grid-template-columns: 1fr 1fr;
+}
+  .layout-3 > :nth-child(1),
+  .layout-3 > :nth-child(2) {
+    grid-row: 1;
+  }
+  .layout-3 > :nth-child(3) {
+    grid-column: 1 / span 2;
+  }
+  .layout-3 > :last-child {
+    grid-row: 2;
+    grid-column: 1 / span 2;
+  }
+
+.layout-4 {
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr auto 1fr;
+}
+  .layout-4 > :last-child {
+    grid-row: 2;
+    grid-column: 1 / span 2;
+  }
+
+.layout-5 {
+  display: grid;
+  grid-template-rows: 1fr 1fr auto 1fr;
+  grid-template-columns: 1fr 1fr;
+}
+  .layout-5 > :nth-child(5) {
+    grid-column: 1 / span 2;
+  }
+  .layout-5 > :last-child {
+    grid-row: 3;
+    grid-column: 1 / span 2;
+  }
+
+/* ------------------------------------------- */
+
+/* Life Counts */
+
+.life-value {
+  font-size: 12vmin;
+  text-shadow:
+    clamp(0.7px, 0.3vw, 5px) clamp(0.7px, 0.3vw, 5px) 0 #000,
+    clamp(-0.7px, -0.3vw, -5px) clamp(0.7px, 0.3vw, 5px) 0 #000,
+    clamp(-0.7px, -0.3vw, -5px) clamp(-0.7px, -0.3vw, -5px) 0 #000,
+    clamp(0.7px, 0.3vw, 5px) clamp(-0.7px, -0.3vw, -5px) 0 #000;
+  z-index: 2;
+}
+
+/* ------------------------------------------- */
+
+/* Menu */
+
+.icon {
+  cursor: pointer;
+  font-size: calc(1.5rem + 5vmin) !important;
+  color: white;
+}
+.menu-bar {
+  background: rgb(28, 28, 28);
+  /* height: 6vh; */
+  overflow: hidden;
+  /* transition: height 0.3s ease; */
+}
+  .expanded {
+    height: min-content;
+  }
+    /* Fade in/out with pointer-events to prevent clicking */
+  .fade-in {
+    opacity: 1;
+    pointer-events: auto; /* Enable interaction */
+    transition: opacity 0.5s ease-in, pointer-events 0.5s ease-in;
+  }
+
+  .fade-out {
+    opacity: 0;
+    pointer-events: none; /* Disable interaction */
+    transition: opacity 0.5s ease-out, pointer-events 0.5s ease-out;
+  }
+  
+  /* ---------------- */
+  
+  /* Player Count */
+  
+  .popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+  }
+  .player-popup {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+  }
+    .player-popup button {
+      margin: 10px;
+      background: none;
+      padding: 0.25em 0.5em; /* Adjust padding for vertical and horizontal space */
+      border-radius: 50%; /* Make the button circular */
+      aspect-ratio: 1; /* Maintain a square aspect ratio */
+      border: 3px solid white; /* Optional: Add a border */
+      display: flex; /* Center text */
+      align-items: center; /* Center text vertically */
+      justify-content: center; /* Center text horizontally */
+      font-size: 6vmin;
+    }
+
+  /* ---------------- */
+
+  /* Reset Button */
+
+  /* ---------------- */
+
+  /* ChatGPT */
+  
+  .gpt-popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; /* Ensure it's on top of everything */
+  }
+  .gpt-popup {
+    background-color: rgb(51, 51, 51);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    width: 45vmax;
+    max-width: 600px;
+  }
+  .gpt-popup textarea {
+    width: 100%;
+    height: 150px;
+    background: rgba(26, 26, 26, 0.339);
+    margin-bottom: 10px;
+  }
+  .gpt-popup button {
+    align-self: flex-end;
+    background: rgba(26, 26, 26, 0.339);
+  }
+/* Popup overlay (input and response) */
+.gpt-popup-overlay,
+.response-popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7); /* Dark background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Ensures it is on top of other elements */
+}
+/* Popup content */
+.gpt-popup,
+.response-popup {
+  background-color: #333;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 600px;
+  width: 100%;
+  color: white;
+  z-index: 1001; /* Popup content is above the overlay */
+}
+
+    
+    
